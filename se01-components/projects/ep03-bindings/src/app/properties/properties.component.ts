@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   templateUrl: './properties.component.html',
-  styles: [
-  ]
+  styleUrls: ['./properties.component.css']
 })
-export class PropertiesComponent implements OnInit {
+export class PropertiesComponent {
 
-  constructor() { }
+  hideBtn = true
 
-  ngOnInit(): void {
+  switchBtnState() {
+    this.hideBtn = !this.hideBtn
   }
+
+  targetKeyword: string = ""
+
+  setKeyword(input: any) {
+    this.targetKeyword = input.value
+    input.value = ""
+  }
+
+  backGround = "yellow"
 
 }
