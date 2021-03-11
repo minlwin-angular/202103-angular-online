@@ -6,7 +6,8 @@
             <div class="card-header">Data From</div>
             <div id="from" (dragover)="$event.preventDefault()" (drop)="drop($event)" class="card-body">
                 <ul class="list-group">
-                    <li class="list-group-item" (dragstart)="drag($event)" draggable="true" *ngFor="let item of from">
+                    <li class="list-group-item" (dragend)="dragEnd($event)" (dragstart)="drag($event)" draggable="true"
+                        *ngFor="let item of from">
                         {{item}}</li>
                 </ul>
             </div>
@@ -20,7 +21,8 @@
 
             <div id="to" (dragover)="$event.preventDefault()" (drop)="drop($event)" class="card-body">
                 <ul class="list-group">
-                    <li class="list-group-item" draggable="true" (dragstart)="drag($event)" *ngFor="let item of to">
+                    <li class="list-group-item" draggable="true" (dragend)="dragEnd($event)" (dragstart)="drag($event)"
+                        *ngFor="let item of to">
                         {{item}}</li>
                 </ul>
             </div>

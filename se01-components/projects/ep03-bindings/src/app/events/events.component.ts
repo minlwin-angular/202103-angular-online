@@ -15,6 +15,13 @@ export class EventsComponent {
 
   drag(event: any) {
     this.dragValue = event.target?.innerText
+    event.target.classList.add('bg-info')
+    event.target.classList.add('text-white')
+  }
+
+  dragEnd(event: any) {
+    event.target.classList.remove('bg-info')
+    event.target.classList.remove('text-white')
   }
 
   drop(event: any) {
