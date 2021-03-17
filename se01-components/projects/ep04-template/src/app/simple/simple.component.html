@@ -7,11 +7,14 @@
             <div class="card-header">Form</div>
             <div class="card-body">
 
-                <form #form="ngForm" (ngSubmit)="save(form)">
+                <form #form="ngForm" (ngSubmit)="save()">
 
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" name="name" [(ngModel)]="student.name" class="form-control">
+                        <input #nameInput="ngModel" type="text" name="name" [(ngModel)]="student.name" required
+                            class="form-control">
+                        <div *ngIf="nameInput.invalid && (nameInput.touched || nameInput.dirty)" class="text-danger">
+                            Please Enter Student Name.</div>
                     </div>
 
                     <div class="form-group">
@@ -31,12 +34,24 @@
                     <fieldset class="row" ngModelGroup="contact">
                         <div class="col form-group">
                             <label>Phone</label>
-                            <input type="text" name="phone" [(ngModel)]="student.contact.phone" class="form-control">
+                            <input #phoneInput="ngModel" required phone type="text" name="phone"
+                                [(ngModel)]="student.contact.phone" class="form-control">
+                            <div *ngIf="phoneInput.invalid && (phoneInput.touched || phoneInput.dirty)"
+                                class="text-danger">
+                                {{ phoneInput.errors?.required ? 'Please enter Phone Number!' : 'Invalid Phone
+                                Number.' }}
+                            </div>
                         </div>
 
                         <div class="col form-group">
                             <label>Email</label>
-                            <input type="text" name="email" [(ngModel)]="student.contact.email" class="form-control">
+                            <input #emailInput="ngModel" type="text" email required name="email"
+                                [(ngModel)]="student.contact.email" class="form-control">
+                            <div *ngIf="emailInput.invalid && (emailInput.touched || emailInput.dirty)"
+                                class="text-danger">
+                                {{ emailInput.errors?.required ? 'Please enter Email Address!' : 'Invalid Emaiil
+                                Format.' }}
+                            </div>
                         </div>
 
                     </fieldset>
@@ -72,7 +87,7 @@
 
                     <div class="form-group">
                         <button type="reset" class="btn btn-outline-primary mr-2">Clear</button>
-                        <button type="submit" class="btn btn-outline-danger">Save</button>
+                        <button [disabled]="form.invalid" type="submit" class="btn btn-outline-danger">Save</button>
                     </div>
                 </form>
 
@@ -114,7 +129,9 @@
             <td>{{s.contact.phone}}</td>
             <td>{{s.contact.email}}</td>
             <td>{{s.course}}</td>
-            <td></td>
+            <td>
+                <a (click)="edit(s)" class="btn btn-link">Edit</a>
+            </td>
         </tr>
     </tbody>
 </table>

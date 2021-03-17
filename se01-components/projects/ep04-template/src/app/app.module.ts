@@ -4,19 +4,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SimpleComponent } from './simple/simple.component';
+import { StudentModel } from './simple/student.model';
+import { PhoneValidatorDirective } from './simple/phone-validator.directive';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SimpleComponent
+    SimpleComponent,
+    PhoneValidatorDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    StudentModel
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

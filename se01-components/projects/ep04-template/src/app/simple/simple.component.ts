@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Student, StudentModel } from './student.model';
 
 @Component({
   templateUrl: './simple.component.html',
-  providers: [StudentModel]
 })
 export class SimpleComponent {
 
@@ -22,11 +20,14 @@ export class SimpleComponent {
     return this.model.list
   }
 
-  save(form: NgForm) {
-
+  save() {
     // Add Student to Model
     this.model.add(this.student)
     // Reset Form
-    form.reset()
+    this.student = this.model.newStudent()
+  }
+
+  edit(data: Student) {
+    this.student = data
   }
 }
